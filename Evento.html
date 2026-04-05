@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expo Camiones Solidarios – 1 de Mayo 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:   #080808;
+  --dark:    #0f0f0f;
+  --card:    #141414;
+  --card2:   #191919;
+  --orange:  #f06400;
+  --orange2: #ff7a1a;
+  --yellow:  #f5c400;
+  --white:   #ede9e0;
+  --muted:   #7a766d;
+  --border:  rgba(255,255,255,0.07);
+  --wsp:     #25D366;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── HERO ─────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  overflow: hidden;
+  padding: 4rem 2rem 5rem;
+}
+
+.hero-img {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&q=85&fit=crop');
+  background-size: cover;
+  background-position: center 40%;
+  filter: brightness(0.35) saturate(0.8);
+  z-index: 0;
+  transform: scale(1.04);
+  animation: zoomOut 8s ease forwards;
+}
+
+@keyframes zoomOut {
+  from { transform: scale(1.04); }
+  to   { transform: scale(1); }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.5) 55%, rgba(8,8,8,0.1) 100%),
+    linear-gradient(to top, rgba(8,8,8,0.95) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.hero-accent-line {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(to right, var(--orange), var(--yellow), transparent);
+  z-index: 3;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--orange);
+  color: #fff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 7px 20px;
+  margin-bottom: 2rem;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  animation: slideIn 0.5s ease both;
+}
+
+.hero-date-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 8px 18px;
+  margin-bottom: 1.5rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--yellow);
+  border-radius: 2px;
+  animation: slideIn 0.5s ease 0.15s both;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(60px, 10vw, 130px);
+  line-height: 0.9;
+  letter-spacing: 2px;
+  margin-bottom: 0.3em;
+  animation: slideIn 0.5s ease 0.25s both;
+}
+
+.hero-title .line2 {
+  color: var(--orange);
+  display: block;
+}
+
+.hero-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 300;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  animation: slideIn 0.5s ease 0.35s both;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  animation: slideIn 0.5s ease 0.45s both;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--orange);
+  color: #fff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 15px 36px;
+  text-decoration: none;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover { background: var(--orange2); transform: scale(1.03); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.25);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 15px 36px;
+  text-decoration: none;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.btn-ghost:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.45); }
+
+/* countdown */
+.countdown-wrap {
+  position: absolute;
+  bottom: 3.5rem;
+  right: 3rem;
+  z-index: 2;
+  display: flex;
+  gap: 1rem;
+  animation: slideIn 0.6s ease 0.6s both;
+}
+
+.cd-item {
+  text-align: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top: 2px solid var(--orange);
+  padding: 14px 16px 10px;
+  min-width: 64px;
+  border-radius: 2px;
+}
+
+.cd-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--white);
+  display: block;
+}
+
+.cd-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── STRIP ────────────────────────────────────── */
+.strip {
+  background: var(--orange);
+  padding: 13px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.strip-inner {
+  display: inline-flex;
+  animation: marquee 20s linear infinite;
+}
+
+.strip-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 19px;
+  letter-spacing: 4px;
+  padding: 0 36px;
+  color: #fff;
+}
+
+.strip-item::before { content: '▶  '; font-size: 12px; vertical-align: middle; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── GENERAL ──────────────────────────────────── */
+section { padding: 5rem 2rem; }
+.container { max-width: 1080px; margin: 0 auto; }
+
+.tag {
+  display: inline-block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--orange);
+  border-left: 3px solid var(--orange);
+  padding-left: 12px;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 6vw, 76px);
+  letter-spacing: 2px;
+  line-height: 0.93;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+
+.lead {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 580px;
+}
+
+/* ── ABOUT ────────────────────────────────────── */
+.about { background: var(--dark); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.solidary-callout {
+  margin-top: 2rem;
+  background: rgba(240,100,0,0.08);
+  border-left: 4px solid var(--orange);
+  padding: 1.5rem 1.75rem;
+  border-radius: 0 4px 4px 0;
+}
+
+.solidary-callout p {
+  font-size: 16px;
+  color: #c0bcb3;
+  line-height: 1.75;
+}
+
+.solidary-callout p strong { color: var(--white); }
+
+.about-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5px;
+}
+
+.about-img-main {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 2px 2px 0 0;
+  display: block;
+  filter: saturate(0.7) brightness(0.85);
+}
+
+.about-img-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5px;
+}
+
+.about-img-sm {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.7) brightness(0.85);
+}
+
+.about-img-sm:first-child { border-radius: 0 0 0 2px; }
+.about-img-sm:last-child  { border-radius: 0 0 2px 0; }
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  margin-top: 2.5rem;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.stat-box {
+  background: var(--card2);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+}
+
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px;
+  color: var(--orange);
+  line-height: 1;
+  display: block;
+}
+
+.stat-lbl {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ── GALERÍA/CAMIONES ─────────────────────────── */
+.trucks { background: var(--black); }
+
+.trucks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 3rem;
+}
+
+.truck-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--card);
+  cursor: pointer;
+}
+
+.truck-card:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.truck-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.65) brightness(0.75);
+  transition: filter 0.4s, transform 0.5s;
+}
+
+.truck-card:first-child .truck-img { height: 440px; }
+
+.truck-card:hover .truck-img {
+  filter: saturate(0.9) brightness(0.9);
+  transform: scale(1.04);
+}
+
+.truck-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 55%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+}
+
+.truck-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: var(--white);
+  line-height: 1;
+}
+
+.truck-sub {
+  font-size: 13px;
+  color: var(--muted);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ── ACTIVIDADES ──────────────────────────────── */
+.activities { background: var(--dark); }
+
+.act-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  margin-top: 3rem;
+}
+
+.act-item {
+  background: var(--card2);
+  padding: 2rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  border: 1px solid var(--border);
+  transition: background 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.act-item::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: var(--orange);
+  transition: height 0.3s;
+}
+
+.act-item:hover { background: #1e1e1e; }
+.act-item:hover::after { height: 100%; }
+
+.act-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  line-height: 1;
+  color: rgba(240,100,0,0.2);
+  flex-shrink: 0;
+  width: 44px;
+  text-align: right;
+}
+
+.act-text h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.act-text p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── ENTRADAS ─────────────────────────────────── */
+.pricing { background: var(--black); }
+
+.pricing-flex {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.price-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--orange);
+  padding: 3rem;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.price-card::before {
+  content: '$';
+  position: absolute;
+  right: -10px; top: -20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 200px;
+  color: rgba(240,100,0,0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.price-type {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.price-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.price-sign {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-top: 14px;
+}
+
+.price-amount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 100px;
+  line-height: 1;
+  color: var(--yellow);
+  letter-spacing: 2px;
+}
+
+.price-per {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.price-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5rem 0;
+}
+
+.price-list {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.price-list li {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #bfbbb2;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.3px;
+}
+
+.price-list li::before {
+  content: '';
+  display: block;
+  width: 7px; height: 7px;
+  background: var(--orange);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.price-note {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* WSP button */
+.btn-wsp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--wsp);
+  color: #fff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 18px 32px;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(37,211,102,0.2);
+  width: 100%;
+}
+
+.btn-wsp:hover {
+  background: #20bd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(37,211,102,0.35);
+}
+
+.wsp-icon {
+  width: 26px;
+  height: 26px;
+  fill: #fff;
+  flex-shrink: 0;
+}
+
+.cupo-badge {
+  display: inline-block;
+  background: rgba(245,196,0,0.1);
+  border: 1px solid rgba(245,196,0,0.3);
+  color: var(--yellow);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 7px 18px;
+  margin-top: 1rem;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+/* pricing right side */
+.pricing-right {}
+
+.pricing-right-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 2px;
+  filter: saturate(0.6) brightness(0.7);
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-info-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--orange);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 0 2px 2px 0;
+}
+
+.pib-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+
+.pib-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+.pib-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* ── LOCATION ─────────────────────────────────── */
+.location { background: var(--dark); }
+
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+  align-items: start;
+}
+
+.map-block {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.map-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.5) brightness(0.6);
+}
+
+.map-footer {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.map-pin-icon {
+  font-size: 22px;
+}
+
+.map-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.map-city {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.loc-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loc-card {
+  background: var(--card2);
+  padding: 1.25rem 1.5rem;
+}
+
+.lc-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+
+.lc-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+}
+
+.lc-sub {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* ── FOOTER ───────────────────────────────────── */
+footer {
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  padding: 3.5rem 2rem 2.5rem;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px;
+  letter-spacing: 4px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.footer-logo span { color: var(--orange); }
+
+.footer-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.footer-solidarity {
+  display: inline-block;
+  max-width: 480px;
+  background: rgba(240,100,0,0.07);
+  border: 1px solid rgba(240,100,0,0.2);
+  border-radius: 2px;
+  padding: 1rem 1.5rem;
+  font-size: 15px;
+  color: #bfbbb2;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.footer-solidarity strong { color: var(--white); }
+
+.footer-bottom {
+  font-size: 13px;
+  color: #3a3833;
+  letter-spacing: 1px;
+}
+
+/* ── RESPONSIVE ───────────────────────────────── */
+@media (max-width: 820px) {
+  .about-grid,
+  .pricing-flex,
+  .location-grid { grid-template-columns: 1fr; }
+
+  .act-list { grid-template-columns: 1fr; }
+
+  .trucks-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .truck-card:first-child {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+  .truck-card:first-child .truck-img { height: 260px; }
+
+  .countdown-wrap {
+    position: static;
+    justify-content: flex-start;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .hero { padding: 2rem 1.5rem 4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-accent-line"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">❤️ Evento Solidario · San Luis</div>
+    <div class="hero-date-pill">📅 &nbsp;1 de Mayo de 2026</div>
+    <h1 class="hero-title">
+      EXPO
+      <span class="line2">CAMIONES</span>
+      SOLIDARIOS
+    </h1>
+    <p class="hero-sub">Autódromo Rosendo Hernández · San Luis</p>
+    <div class="hero-ctas">
+      <a href="#entradas" class="btn-primary">Cómo conseguir mi entrada →</a>
+      <a href="#evento" class="btn-ghost">Conocer el evento</a>
+    </div>
+  </div>
+
+  <div class="countdown-wrap" id="countdown">
+    <div class="cd-item"><span class="cd-num" id="cd-d">--</span><span class="cd-label">Días</span></div>
+    <div class="cd-item"><span class="cd-num" id="cd-h">--</span><span class="cd-label">Horas</span></div>
+    <div class="cd-item"><span class="cd-num" id="cd-m">--</span><span class="cd-label">Min</span></div>
+    <div class="cd-item"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Seg</span></div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span class="strip-item">Expo de Camiones</span>
+    <span class="strip-item">Evento Solidario</span>
+    <span class="strip-item">Autódromo Rosendo Hernández</span>
+    <span class="strip-item">1 de Mayo 2026</span>
+    <span class="strip-item">San Luis Argentina</span>
+    <span class="strip-item">Ayudá con tu presencia</span>
+    <span class="strip-item">Expo de Camiones</span>
+    <span class="strip-item">Evento Solidario</span>
+    <span class="strip-item">Autódromo Rosendo Hernández</span>
+    <span class="strip-item">1 de Mayo 2026</span>
+    <span class="strip-item">San Luis Argentina</span>
+    <span class="strip-item">Ayudá con tu presencia</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="evento">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="tag">El Evento</div>
+        <h2 class="section-title">UNA EXPO QUE MUEVE CORAZONES</h2>
+        <p class="lead">
+          Los camiones más imponentes de la región se reúnen en el Autódromo Rosendo Hernández para un espectáculo único. Una jornada familiar con vehículos extraordinarios y un fin que vale la pena celebrar.
+        </p>
+        <div class="solidary-callout">
+          <p><strong>Tu entrada hace la diferencia.</strong> Todo lo recaudado en este evento va destinado directamente a comprar recursos para personas y familias que más los necesitan en nuestra comunidad. Vení a pasarla bien y ayudá a quienes te necesitan.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-box">
+            <span class="stat-num">100%</span>
+            <div class="stat-lbl">Recaudación solidaria</div>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">1°</span>
+            <div class="stat-lbl">Mayo 2026</div>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">∞</span>
+            <div class="stat-lbl">Camiones y Shows</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <img class="about-img-main"
+          src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=800&q=80&fit=crop"
+          alt="Camiones en exposición">
+        <div class="about-img-row">
+          <img class="about-img-sm"
+            src="https://images.unsplash.com/photo-1540227905260-fc3c60a2fae6?w=400&q=80&fit=crop"
+            alt="Detalle de camión">
+          <img class="about-img-sm"
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80&fit=crop"
+            alt="Show de vehículos">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA CAMIONES -->
+<section class="trucks" id="camiones">
+  <div class="container">
+    <div class="tag">La Expo</div>
+    <h2 class="section-title">LOS PROTAGONISTAS</h2>
+    <div class="trucks-grid">
+      <div class="truck-card">
+        <img class="truck-img"
+          src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=900&q=80&fit=crop"
+          alt="Camión principal">
+        <div class="truck-overlay">
+          <div class="truck-label">Camiones de Alto Tonelaje</div>
+          <div class="truck-sub">Los más grandes de la región en un solo lugar</div>
+        </div>
+      </div>
+      <div class="truck-card">
+        <img class="truck-img"
+          src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=500&q=80&fit=crop&crop=center"
+          alt="Camión modificado">
+        <div class="truck-overlay">
+          <div class="truck-label">Modificados y Tuneados</div>
+          <div class="truck-sub">Detalles que impresionan</div>
+        </div>
+      </div>
+      <div class="truck-card">
+        <img class="truck-img"
+          src="https://images.unsplash.com/photo-1612820117894-9e67ca787b07?w=500&q=80&fit=crop"
+          alt="Camión histórico">
+        <div class="truck-overlay">
+          <div class="truck-label">Clásicos y Colección</div>
+          <div class="truck-sub">Historia sobre ruedas</div>
+        </div>
+      </div>
+      <div class="truck-card">
+        <img class="truck-img"
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&fit=crop"
+          alt="Show en pista">
+        <div class="truck-overlay">
+          <div class="truck-label">Pista y Demostración</div>
+          <div class="truck-sub">Shows en el autódromo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVIDADES -->
+<section class="activities" id="actividades">
+  <div class="container">
+    <div class="tag">Actividades</div>
+    <h2 class="section-title">¿QUÉ VAS A ENCONTRAR?</h2>
+    <div class="act-list">
+      <div class="act-item">
+        <div class="act-num">01</div>
+        <div class="act-text">
+          <h3>Exposición de Camiones</h3>
+          <p>Docenas de camiones de todo tipo en exhibición estática. Podés subirte, sacar fotos y hablar con los dueños.</p>
+        </div>
+      </div>
+      <div class="act-item">
+        <div class="act-num">02</div>
+        <div class="act-text">
+          <h3>Shows en Pista</h3>
+          <p>Demostraciones y shows en el Autódromo Rosendo Hernández. Maniobras y habilidades al volante de vehículos gigantes.</p>
+        </div>
+      </div>
+      <div class="act-item">
+        <div class="act-num">03</div>
+        <div class="act-text">
+          <h3>Zona Familiar</h3>
+          <p>Un espacio para toda la familia. Chicos y grandes disfrutando juntos de una jornada especial al aire libre.</p>
+        </div>
+      </div>
+      <div class="act-item">
+        <div class="act-num">04</div>
+        <div class="act-text">
+          <h3>Gastronomía</h3>
+          <p>Food trucks y puestos de comida para disfrutar durante todo el día dentro del predio del autódromo.</p>
+        </div>
+      </div>
+      <div class="act-item">
+        <div class="act-num">05</div>
+        <div class="act-text">
+          <h3>Música y Ambiente</h3>
+          <p>Música en vivo y animación durante todo el evento. Una fiesta popular para celebrar con la comunidad.</p>
+        </div>
+      </div>
+      <div class="act-item">
+        <div class="act-num">06</div>
+        <div class="act-text">
+          <h3>Causa Solidaria</h3>
+          <p>Cada peso recaudado va directo a comprar recursos para familias que los necesitan. Tu entrada es un gesto de amor.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTRADAS -->
+<section class="pricing" id="entradas">
+  <div class="container">
+    <div class="tag">Entradas</div>
+    <h2 class="section-title">ACCESO AL EVENTO</h2>
+    <div class="pricing-flex">
+      <div class="price-card">
+        <div class="price-type">Entrada General</div>
+        <div class="price-row">
+          <span class="price-sign">$</span>
+          <span class="price-amount">15.000</span>
+        </div>
+        <div class="price-per">por persona</div>
+        <hr class="price-divider">
+        <ul class="price-list">
+          <li>Acceso completo al evento</li>
+          <li>Exposición de camiones</li>
+          <li>Shows en pista</li>
+          <li>Zona familiar y gastronomía</li>
+          <li>Música en vivo</li>
+          <li>Contribuís a la causa solidaria</li>
+        </ul>
+        <p class="price-note">
+          Las entradas no se venden online. Para consultarlas o coordinarlas, comunicate por WhatsApp directamente con los organizadores.
+        </p>
+        <a
+          href="https://wa.me/5492665020043?text=Hola!%20Quiero%20consultar%20sobre%20las%20entradas%20para%20la%20Expo%20Camiones%20Solidarios%20del%201%20de%20Mayo%202026."
+          target="_blank"
+          class="btn-wsp"
+        >
+          <svg class="wsp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Consultar por WhatsApp
+        </a>
+        <div class="cupo-badge">⚡ Cupos Limitados</div>
+      </div>
+
+      <div class="pricing-right">
+        <img
+          class="pricing-right-img"
+          src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=700&q=80&fit=crop&crop=top"
+          alt="Expo camiones">
+        <div class="pricing-info-box">
+          <div class="pib-label">Fecha</div>
+          <div class="pib-value">1 de Mayo de 2026</div>
+          <div class="pib-sub">Día del Trabajador · Feriado Nacional</div>
+        </div>
+        <div class="pricing-info-box">
+          <div class="pib-label">Lugar</div>
+          <div class="pib-value">Autódromo Rosendo Hernández</div>
+          <div class="pib-sub">San Luis, Argentina</div>
+        </div>
+        <div class="pricing-info-box">
+          <div class="pib-label">Contacto</div>
+          <div class="pib-value">2665 02-0043</div>
+          <div class="pib-sub">WhatsApp · Solo entradas y consultas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location" id="ubicacion">
+  <div class="container">
+    <div class="tag">Dónde es</div>
+    <h2 class="section-title">AUTÓDROMO ROSENDO HERNÁNDEZ</h2>
+    <div class="location-grid">
+      <div class="map-block">
+        <img class="map-img"
+          src="https://images.unsplash.com/photo-1504215680853-026ed2a45def?w=700&q=80&fit=crop"
+          alt="Autódromo">
+        <div class="map-footer">
+          <span class="map-pin-icon">📍</span>
+          <div>
+            <div class="map-name">Autódromo Rosendo Hernández</div>
+            <div class="map-city">San Luis, Argentina</div>
+          </div>
+        </div>
+      </div>
+      <div class="loc-cards">
+        <div class="loc-card">
+          <div class="lc-label">Venue</div>
+          <div class="lc-value">Autódromo Rosendo Hernández</div>
+          <div class="lc-sub">Una de las pistas más reconocidas de la provincia</div>
+        </div>
+        <div class="loc-card">
+          <div class="lc-label">Fecha y hora</div>
+          <div class="lc-value">1 de Mayo de 2026</div>
+          <div class="lc-sub">Feriado nacional · Todo el día</div>
+        </div>
+        <div class="loc-card">
+          <div class="lc-label">Entradas</div>
+          <div class="lc-value">Solo en puerta · $15.000</div>
+          <div class="lc-sub">Sin venta online · Cupos limitados</div>
+        </div>
+        <div class="loc-card">
+          <div class="lc-label">Estacionamiento</div>
+          <div class="lc-value">Gratuito en el predio</div>
+          <div class="lc-sub">Amplio espacio disponible para todos</div>
+        </div>
+        <div class="loc-card">
+          <div class="lc-label">Contacto directo</div>
+          <div class="lc-value">2665 02-0043</div>
+          <div class="lc-sub">Consultas por WhatsApp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">EXPO <span>CAMIONES</span> SOLIDARIOS</div>
+  <div class="footer-sub">1 de Mayo 2026 · Autódromo Rosendo Hernández · San Luis</div>
+  <div class="footer-solidarity">
+    ❤️ <strong>Evento 100% solidario.</strong><br>
+    Todo lo recaudado se destina a la compra de recursos para personas y familias que los necesitan en nuestra comunidad. Gracias por ser parte.
+  </div>
+  <div class="footer-bottom">© 2026 Expo Camiones Solidarios · San Luis, Argentina</div>
+</footer>
+
+<script>
+(function() {
+  var target = new Date('2026-05-01T09:00:00-03:00').getTime();
+  function tick() {
+    var now = Date.now();
+    var diff = target - now;
+    if (diff <= 0) {
+      document.getElementById('cd-d').textContent = '0';
+      document.getElementById('cd-h').textContent = '0';
+      document.getElementById('cd-m').textContent = '0';
+      document.getElementById('cd-s').textContent = '0';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-d').textContent = d;
+    document.getElementById('cd-h').textContent = h < 10 ? '0'+h : h;
+    document.getElementById('cd-m').textContent = m < 10 ? '0'+m : m;
+    document.getElementById('cd-s').textContent = s < 10 ? '0'+s : s;
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
